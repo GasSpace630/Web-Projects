@@ -5,3 +5,5 @@ Why not make a repo for every project? Well these are mere simple projects of co
 ## The projects i currently have:-
 * Simple Calculator
 <img src="imgs/web-calc.png" alt="calculator screenshot">
+
+* Notes App (name not found) WIP.
