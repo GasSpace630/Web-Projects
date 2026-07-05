@@ -3,15 +3,19 @@
 <head>
     <title>Notes App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Notes App</h1>
     <button id="new-btn">New</button>
 
     <div class="note-edit">
-    <button class="save-btn">Save</button>
-    <button>Save As</button>
-    <button class="open-btn">Open</button>
+        <div class="top-bar">
+        <p class="note-name-lbl">note-name</p>
+        <button class="save-btn">Save</button>
+        <button>Save As</button>
+        <button class="open-btn">Open</button>
+    </div>
     <br>
     <textarea
         rows="10" cols="30"
@@ -20,11 +24,11 @@
     ></textarea>
     </div>
 
-    <div id="save-dialog">
-        <h3>Save</h3>
+    <div id="prompt-dialog" hidden> 
         <input id="note-name" type="text" placeholder="Enter Note Name">
-        <button id="ok-btn">OK</button>
+        <br><br>
         <button id="cancel-btn">Cancel</button>
+        <button id="ok-btn">OK</button>
     </div>
 
     <script src="script.js"></script>
@@ -33,7 +37,8 @@
 
 
 <!--
-Save and Load
+file/saves explorer
+save/open to and fro system files
 Styling
 Layout
 -->

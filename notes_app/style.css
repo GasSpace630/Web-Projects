@@ -1,0 +1,84 @@
+body {
+  background-color: #403D39;
+  color: #CCC5B9;
+  margin: 0px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+h1 {
+  color: #EB5E28;
+  padding: 20px;
+  margin: 0px;
+}
+
+button {
+  background-color: #252422;
+  color: #CCC5B9;
+  border: none;
+  border-radius: 10px;
+  padding: 6px 20px 6px 20px;
+}
+button:hover {
+  background-color: #403D39;
+  color: #FFFCF2;
+  border: 2px solid #252422;
+  padding: 4px 18px 4px 18px;
+}
+button:focus {
+  outline: none;
+}
+
+.note-edit {
+  width: fit-content;
+  padding: 10px;
+  border: 2px solid #252422;
+  border-radius: 10px;
+  margin: 6px;
+}
+
+textarea {
+  background-color: #252422;
+  color: #CCC5B9;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 260px;
+  min-height: 180px;
+  border: none;
+  border-radius: 10px;
+  padding: 6px;
+  font-size: 14px;
+}
+textarea:focus {
+  outline: none;
+  color: #FFFCF2;
+}
+
+#prompt-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  background-color: #403D39;
+  padding: 10px;
+  border: 2px solid #252422;
+  border-radius: 10px;
+  margin: 6px auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+input {
+  background-color: #403D39;
+  border: 2px solid #252422;
+  border-radius: 6px;
+  padding: 4px;
+}
+input:hover {
+  color: #CCC5B9;
+}
+input:focus {
+  color: #FFFCF2;
+  outline: none;
+}
+
