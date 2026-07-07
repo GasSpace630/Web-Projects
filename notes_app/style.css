@@ -39,6 +39,10 @@ button:active {
   margin: 6px;
 }
 
+.note-name-lbl {
+  display: inline-block;
+}
+
 textarea {
   background-color: #252422;
   color: #CCC5B9;

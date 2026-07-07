@@ -6,10 +6,15 @@ const cancelBtn = document.getElementById("cancel-btn")
 const openBtn = document.getElementById("open-btn");
 const newBtn = document.getElementById("new-btn");
 
-openBtn.addEventListener("click", open);
 
 document.querySelectorAll(".save-btn").forEach(button => {
     button.addEventListener("click", save);
+});
+
+document.addEventListener("click", () => {
+    if (event.target.classList.contains("close-btn")) {
+        event.target.closest(".note-edit").remove();
+    }
 });
 
 function getNoteName(callback) {
@@ -28,7 +33,7 @@ function getNoteName(callback) {
     }
 }
 
-function createNote(name, text) {
+function createNote(name = "Untitled", text = "") {
     const template = document.getElementById("note-template");
     const note = template.content.firstElementChild.cloneNode(true);
     note.querySelector(".note-name-lbl").textcontent = name;
@@ -67,3 +72,7 @@ function open(event) {
 
 }
 
+openBtn.addEventListener("click", open);
+newBtn.addEventListener("click", () => {
+    createNote();
+});
