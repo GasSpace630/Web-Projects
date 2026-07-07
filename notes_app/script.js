@@ -3,13 +3,13 @@ const noteNameInput = document.getElementById("note-name");
 const okBtn = document.getElementById("ok-btn");
 const cancelBtn = document.getElementById("cancel-btn")
 
+const openBtn = document.getElementById("open-btn");
+const newBtn = document.getElementById("new-btn");
+
+openBtn.addEventListener("click", open);
 
 document.querySelectorAll(".save-btn").forEach(button => {
     button.addEventListener("click", save);
-});
-
-document.querySelectorAll(".open-btn").forEach(button => {
-    button.addEventListener("click", open);
 });
 
 function getNoteName(callback) {
@@ -28,6 +28,14 @@ function getNoteName(callback) {
     }
 }
 
+function createNote(name, text) {
+    const template = document.getElementById("note-template");
+    const note = template.content.firstElementChild.cloneNode(true);
+    note.querySelector(".note-name-lbl").textcontent = name;
+    note.querySelector(".editor").value = text;
+    document.body.appendChild(note);
+}
+
 function save(event) {
     const noteEdit = event.target.closest(".note-edit");
     const textarea = noteEdit.querySelector(".editor");
@@ -44,23 +52,17 @@ function save(event) {
 }
 
 function open(event) {
-    const noteEdit = event.target.closest(".note-edit");
-    const textedit = noteEdit.querySelector(".editor");
-    const nameLbl = noteEdit.querySelector(".note-name-lbl");
-    var text;
-
     promptDialog.hidden = false;
 
     getNoteName((key) => {
         promptDialog.hidden = true;
         if (!key) return;
-        text = localStorage.getItem(key);
+        const text = localStorage.getItem(key);
         if (text == null) {
             alert("Note not Found!!!");
             return;
         }
-        textedit.value = text;
-        nameLbl.textContent = key;
+        createNote(key, text);
     });
 
 }

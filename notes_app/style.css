@@ -27,6 +27,9 @@ button:hover {
 button:focus {
   outline: none;
 }
+button:active {
+    background-color: #EB5E28;
+}
 
 .note-edit {
   width: fit-content;
