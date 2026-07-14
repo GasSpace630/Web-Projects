@@ -6,26 +6,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Notes App</h1>
-    <button id="new-btn">New</button>
-    <button id="open-btn">Open</button>
-
-    <template id="note-template">
-        <div class="note-edit">
-            <div class="top-bar">
+    <div class="note-edit">
+    <h1>Note Editor</h1>
+        <div class="top-bar">
             <p class="note-name-lbl">note-name</p>
+            <button id="new-btn">New</button>
+            <button id="open-btn">Open</button>
             <button class="save-btn">Save</button>
             <button>Save As</button>
             <button class="close-btn">Close</button>
         </div>
         <br>
         <textarea
-            rows="10" cols="30"
             placeholder="Type stuff!"
             class="editor"
         ></textarea>
-        </div>
-    </template>
+    </div>
     <div id="prompt-dialog" hidden> 
         <input id="note-name" type="text" placeholder="Enter Note Name">
         <br><br>
@@ -44,4 +40,5 @@ not saved indicator
 notes layout
 file/saves explorer
 save/open to and fro system files
+add a image as bg with translucent textarea
 -->
