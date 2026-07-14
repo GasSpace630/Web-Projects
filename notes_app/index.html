@@ -6,20 +6,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="note-edit">
+    <div id="note-edit">
     <h1>Note Editor</h1>
-        <div class="top-bar">
-            <p class="note-name-lbl">note-name</p>
+        <div id="top-bar">
+            <p id="note-name-lbl">note-name</p>
             <button id="new-btn">New</button>
             <button id="open-btn">Open</button>
-            <button class="save-btn">Save</button>
-            <button>Save As</button>
-            <button class="close-btn">Close</button>
+            <button id="save-btn">Save</button>
+            <button id="save-as-btn">Save As</button>
+            <button id="options-btn">Options</button>
         </div>
         <br>
         <textarea
             placeholder="Type stuff!"
-            class="editor"
+            id="editor"
         ></textarea>
     </div>
     <div id="prompt-dialog" hidden> 
@@ -35,10 +35,12 @@
 
 
 <!--
+TODO:
 new notes appear on top
 not saved indicator
 notes layout
 file/saves explorer
 save/open to and fro system files
 add a image as bg with translucent textarea
+options/preferences menu
 -->
