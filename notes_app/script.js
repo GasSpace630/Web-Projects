@@ -5,18 +5,26 @@ const saveAsBtn = document.getElementById("save-as-btn");
 const optionsBtn = document.getElementById("options-btn");
 const editor = document.getElementById("editor");
 const notesList = document.getElementById("notes-list");
+const noteNameLbl = document.getElementById("note-name-lbl");
 
 const promptDialog = document.getElementById("prompt-dialog");
 const noteNameInput = document.getElementById("note-name");
 const okBtn = document.getElementById("ok-btn");
 const cancelBtn = document.getElementById("cancel-btn");
 
-// "save" , "open"
-let promptMode = "";
 let promptAction = null;
+let currentNote = null;
+
+// create a new note on launch
+newNote();
 
 // show saved note names
 updateNotesList();
+
+function newNote() {
+    editor.value = "";
+    currentNote = null;
+}
 
 function saveNote(title, data) {
     let notes = JSON.parse(localStorage.getItem("notes")) || [];
@@ -36,6 +44,8 @@ function saveNote(title, data) {
 function loadNote(title) {
     let notes = JSON.parse(localStorage.getItem("notes")) || [];
     const note = notes.find(note => note.title == title);
+    currentNoteTitle = note.title;
+    noteNameLbl.textContent = currentNoteTitle;
     return note || null;
 }
 
@@ -78,8 +88,21 @@ cancelBtn.addEventListener("click", () => {
 });
 
 saveBtn.addEventListener("click", () => {
+    if (currentNote == null) {
+        showPrompt((title) => {
+            saveNote(title, editor.value);
+            currentNote = title;
+        });
+    } else {
+        saveNote(currentNote, editor.value);
+        updateNotesList();
+    }
+});
+
+saveAsBtn.addEventListener("click", () => {
     showPrompt((title) => {
         saveNote(title, editor.value);
+        currentNote = title;
     });
 });
 
