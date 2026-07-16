@@ -13,6 +13,10 @@ const cancelBtn = document.getElementById("cancel-btn");
 
 // "save" , "open"
 let promptMode = "";
+let promptAction = null;
+
+// show saved note names
+updateNotesList();
 
 function saveNote(title, data) {
     let notes = JSON.parse(localStorage.getItem("notes")) || [];
@@ -26,6 +30,7 @@ function saveNote(title, data) {
         });
     }
     localStorage.setItem("notes", JSON.stringify(notes));
+    updateNotesList();
 }
 
 function loadNote(title) {
@@ -34,8 +39,18 @@ function loadNote(title) {
     return note || null;
 }
 
-function showPrompt(mode) {
-    promptMode = mode;
+function updateNotesList() {
+    const notes = JSON.parse(localStorage.getItem("notes")) || [];
+    notesList.innerHTML = "";
+    notes.forEach((note) => {
+        const div = document.createElement("div");
+        div.textContent = note.title;
+        notesList.appendChild(div);
+    });
+}
+
+function showPrompt(action) {
+    promptAction = action;
     noteNameInput.value = "";
     promptDialog.hidden = false;
     noteNameInput.focus();
@@ -45,22 +60,16 @@ function hidePrompt() {
     promptDialog.hidden = true;
 }
 
+noteNameInput.addEventListener("keydown", (event) => {
+    if (event.key == "Enter") okBtn.click();
+});
+
 okBtn.addEventListener("click", () => {
     const title = noteNameInput.value.trim();
     if (title == "") {
         alert("Enter a note name!");
     }
-    if (promptMode == "save") {
-        saveNote(title, editor.value);
-    }
-    if (promptMode == "open") {
-        const note = loadNote(title);
-        if (note) {
-            editor.value = note.data;
-        } else {
-            alert("Note not found!");
-        }
-    }
+    promptAction(title);
     hidePrompt();
 });
 
@@ -69,9 +78,18 @@ cancelBtn.addEventListener("click", () => {
 });
 
 saveBtn.addEventListener("click", () => {
-    showPrompt("save");
+    showPrompt((title) => {
+        saveNote(title, editor.value);
+    });
 });
 
 openBtn.addEventListener("click", () => {
-    showPrompt("open")
+    showPrompt((title) => {
+        const note = loadNote(title);
+        if (note) {
+            editor.value = note.data;
+        } else {
+            alert("note not found!");
+        }
+    });
 });
