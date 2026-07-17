@@ -77,7 +77,29 @@ button:active {
 	padding-bottom: 6px;
 }
 
+#editor-container {
+	display: flex;
+	flex: 1;
+	flex-direction: row;
+	min-height: 0;
+}
+
+#line-numbers {
+	flex-shrink: 0;
+	overflow-y: hidden;
+
+	font-size: 14px;
+	white-space: pre;
+	user-select: none;
+
+	padding: 10px;
+}
+
 #editor {
+	flex: 1;
+	min-width: 0;
+	min-height: 0;
+	overflow-y: auto;
 	background-color: var(--color-bg);
 	color: var(--color-text-subtle);
 
@@ -85,7 +107,6 @@ button:active {
 	border: none;
 	resize: none;
 	padding: 10px;
-	height: 100%;
 }
 #editor:focus {
 	color: var(--color-text-main);

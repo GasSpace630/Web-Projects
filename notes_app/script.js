@@ -65,10 +65,10 @@ function updateNotesList() {
 
 function updateLineNumbers() {
 	const lineCount = editor.value.split("\n").length;
-	let numbers = "";
+	let numbers = "1";
 
-	for (let i = 1; i < lineCount; i++) {
-		numbers += i + "\n";
+	for (let i = 2; i < lineCount+1; i++) {
+		numbers += "\n" + i;
 	}
 	lineNumbers.textContent = numbers;
 }
@@ -89,6 +89,10 @@ noteNameInput.addEventListener("keydown", (event) => {
 });
 
 editor.addEventListener("input", updateLineNumbers);
+
+editor.addEventListener("scroll", () => {
+	lineNumbers.scrollTop = editor.scrollTop;
+});
 
 okBtn.addEventListener("click", () => {
 	const title = noteNameInput.value.trim();
