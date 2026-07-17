@@ -4,6 +4,7 @@ const saveBtn = document.getElementById("save-btn");
 const saveAsBtn = document.getElementById("save-as-btn");
 const optionsBtn = document.getElementById("options-btn");
 const editor = document.getElementById("editor");
+const lineNumbers = document.getElementById("line-numbers")
 const notesList = document.getElementById("notes-list");
 const noteNameLbl = document.getElementById("note-name-lbl");
 
@@ -21,99 +22,113 @@ newNote();
 // show saved note names
 updateNotesList();
 
+updateLineNumbers();
+
 function newNote() {
-    editor.value = "";
-    currentNote = null;
+	editor.value = "";
+	currentNote = null;
 }
 
 function saveNote(title, data) {
-    let notes = JSON.parse(localStorage.getItem("notes")) || [];
-    const index = notes.findIndex(note => note.title == title);
-    if (index != -1) {
-        notes[index].data = data;
-    } else {
-        notes.push({
-            title : title,
-            data : data,
-        });
-    }
-    localStorage.setItem("notes", JSON.stringify(notes));
-    updateNotesList();
+	let notes = JSON.parse(localStorage.getItem("notes")) || [];
+	const index = notes.findIndex(note => note.title == title);
+	if (index != -1) {
+		notes[index].data = data;
+	} else {
+		notes.push({
+			title : title,
+			data : data,
+		});
+	}
+	localStorage.setItem("notes", JSON.stringify(notes));
+	updateNotesList();
 }
 
 function loadNote(title) {
-    let notes = JSON.parse(localStorage.getItem("notes")) || [];
-    const note = notes.find(note => note.title == title);
-    currentNoteTitle = note.title;
-    noteNameLbl.textContent = currentNoteTitle;
-    return note || null;
+	let notes = JSON.parse(localStorage.getItem("notes")) || [];
+	const note = notes.find(note => note.title == title);
+	currentNoteTitle = note.title;
+	noteNameLbl.textContent = currentNoteTitle;
+	return note || null;
 }
 
 function updateNotesList() {
-    const notes = JSON.parse(localStorage.getItem("notes")) || [];
-    notesList.innerHTML = "";
-    notes.forEach((note) => {
-        const noteBtn = document.createElement("div");
-        noteBtn.className = "note-btn";
-        noteBtn.textContent = note.title;
-        notesList.appendChild(noteBtn);
-    });
+	const notes = JSON.parse(localStorage.getItem("notes")) || [];
+	notesList.innerHTML = "";
+	notes.forEach((note) => {
+		const noteBtn = document.createElement("div");
+		noteBtn.className = "note-btn";
+		noteBtn.textContent = note.title;
+		notesList.appendChild(noteBtn);
+	});
+}
+
+function updateLineNumbers() {
+	const lineCount = editor.value.split("\n").length;
+	let numbers = "";
+
+	for (let i = 1; i < lineCount; i++) {
+		numbers += i + "\n";
+	}
+	lineNumbers.textContent = numbers;
 }
 
 function showPrompt(action) {
-    promptAction = action;
-    noteNameInput.value = "";
-    promptDialog.hidden = false;
-    noteNameInput.focus();
+	promptAction = action;
+	noteNameInput.value = "";
+	promptDialog.hidden = false;
+	noteNameInput.focus();
 }
 
 function hidePrompt() {
-    promptDialog.hidden = true;
+	promptDialog.hidden = true;
 }
 
 noteNameInput.addEventListener("keydown", (event) => {
-    if (event.key == "Enter") okBtn.click();
+	if (event.key == "Enter") okBtn.click();
 });
 
+editor.addEventListener("input", updateLineNumbers);
+
 okBtn.addEventListener("click", () => {
-    const title = noteNameInput.value.trim();
-    if (title == "") {
-        alert("Enter a note name!");
-    }
-    promptAction(title);
-    hidePrompt();
+	const title = noteNameInput.value.trim();
+	if (title == "") {
+		alert("Enter a note name!");
+	}
+	promptAction(title);
+	hidePrompt();
 });
 
 cancelBtn.addEventListener("click", () => {
-    hidePrompt();
+	hidePrompt();
 });
 
 saveBtn.addEventListener("click", () => {
-    if (currentNote == null) {
-        showPrompt((title) => {
-            saveNote(title, editor.value);
-            currentNote = title;
-        });
-    } else {
-        saveNote(currentNote, editor.value);
-        updateNotesList();
-    }
+	if (currentNote == null) {
+		showPrompt((title) => {
+			saveNote(title, editor.value);
+			currentNote = title;
+		});
+	} else {
+		saveNote(currentNote, editor.value);
+		updateNotesList();
+	}
 });
 
 saveAsBtn.addEventListener("click", () => {
-    showPrompt((title) => {
-        saveNote(title, editor.value);
-        currentNote = title;
-    });
+	showPrompt((title) => {
+		saveNote(title, editor.value);
+		currentNote = title;
+	});
 });
 
 openBtn.addEventListener("click", () => {
-    showPrompt((title) => {
-        const note = loadNote(title);
-        if (note) {
-            editor.value = note.data;
-        } else {
-            alert("note not found!");
-        }
-    });
+	showPrompt((title) => {
+		const note = loadNote(title);
+		if (note) {
+			editor.value = note.data;
+		} else {
+			alert("note not found!");
+		}
+	});
 });

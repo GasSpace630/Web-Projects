@@ -1,49 +1,55 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Notes App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+	<title>Notes App</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app">
-        <div id="side-bar">
-            <h3>notes:</h3>
-            <div id="notes-list"></div>
-        </div>
-        <div id="editor-area">
-            <div id="top-bar">
-                <h3 id="note-name-lbl">untitled</h3>
-                <button id="new-btn">New</button>
-                <button id="open-btn">Open</button>
-                <button id="save-btn">Save</button>
-                <button id="save-as-btn">Save As</button>
-                <button id="options-btn">Options</button>
-            </div>
-            <textarea
-                placeholder="Type stuff!"
-                id="editor"
-            >
-            </textarea>
-        </div>
-    </div>
-    
-    <div id="prompt-dialog" hidden> 
-        <input id="note-name" type="text" placeholder="Enter Note Name">
-        <br><br>
-        <button id="cancel-btn">Cancel</button>
-        <button id="ok-btn">OK</button>
-    </div>
+	<div id="app">
+		<div id="side-bar">
+			<h3>notes:</h3>
+			<div id="notes-list"></div>
+		</div>
+		<div id="editor-area">
+			<div id="top-bar">
+				<h3 id="note-name-lbl">untitled</h3>
+				<button id="new-btn">New</button>
+				<button id="open-btn">Open</button>
+				<button id="save-btn">Save</button>
+				<button id="save-as-btn">Save As</button>
+				<button id="options-btn">Options</button>
+			</div>
+			<div id="editor-container">
+				<div id="line-numbers">sdk</div>
+				<textarea
+					placeholder="Type stuff!"
+					id="editor"
+				>
+				</textarea>
+			</div>
+		</div>
+	</div>
+	
+	<div id="prompt-dialog" hidden> 
+		<input id="note-name" type="text" placeholder="Enter Note Name">
+		<br><br>
+		<button id="cancel-btn">Cancel</button>
+		<button id="ok-btn">OK</button>
+	</div>
 
-    <script src="script.js"></script>
+	<script src="script.js"></script>
 </body>
 </html>
 
 
 <!--
 TODO:
-not saved indicator
-notes layout
+note not saved indicator (*)
+line numbers?
+clickable notes in sidebar
+side bar stying
+note tabs
 file/saves explorer
 add a image as bg with translucent textarea
 options/preferences menu
