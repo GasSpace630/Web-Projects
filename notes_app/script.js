@@ -53,9 +53,10 @@ function updateNotesList() {
     const notes = JSON.parse(localStorage.getItem("notes")) || [];
     notesList.innerHTML = "";
     notes.forEach((note) => {
-        const div = document.createElement("div");
-        div.textContent = note.title;
-        notesList.appendChild(div);
+        const noteBtn = document.createElement("div");
+        noteBtn.className = "note-btn";
+        noteBtn.textContent = note.title;
+        notesList.appendChild(noteBtn);
     });
 }
 

@@ -1,101 +1,113 @@
+:root {
+	--color-primary: #EB5E28;
+	--color-bg: #252422;
+	--color-bg-subtle: #403D39;
+	--color-text-main: #FFFCF2;
+	--color-text-subtle: #CCC5B9;
+}
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-body {
-  background-color: #403D39;
-  color: #CCC5B9;
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
-  height: 100%;
-  font-family: 'JetBrains Mono', monospace;
+body, html{
+	background-color: var(--color-bg-subtle);
+	color: var(--color-text-subtle);
+	font-family: 'JetBrains Mono', monospace;
+
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
 }
 
-h1 {
-  color: #EB5E28;
-  padding: 20px;
-  margin: 0px;
+h1, h2, h3 {
+	padding: 0;
+	margin: 0;
+	color: var(--color-primary);
 }
 
 button {
-  background-color: #252422;
-  color: #CCC5B9;
-  border: none;
-  border-radius: 10px;
-  padding: 6px 20px 6px 20px;
+	background-color: var(--color-bg);
+	color: var(--color-text-subtle);
+	cursor: pointer;
+	border: none;
+
+	padding: 8px 36px 8px 36px;
 }
 button:hover {
-  background-color: #403D39;
-  color: #FFFCF2;
-  border: 2px solid #252422;
-  padding: 4px 18px 4px 18px;
-}
-button:focus {
-  outline: none;
+	background-color: var(--color-bg-subtle);
+	color: var(--color-text-main);
+
+	border: var(--color-bg) solid 2px;
+	padding: 6px 34px 6px 34px;
 }
 button:active {
-  background-color: #EB5E28;
+	background-color: var(--color-primary);
+	color: var(--color-text-main);
 }
 
-#note-edit {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
+/* App Elements */
+
+#app {
+	display: flex;
+	flex-direction: row;
+
+	width: 100%;
+	height: 100vh;
+}
+
+#side-bar {
+	background-color: var(--color-bg);
+
+	width: 250px;
+	padding: 10px;
+}
+
+#editor-area {
+	flex: 1;
+	padding: 6px;
+	border: var(--color-bg) solid 2px;
+	min-width: 0;
 }
 
 #top-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+	padding-bottom: 6px;
 }
 
 #editor {
-  flex: 1;
-  width: 100%;
-  min-height: 0;
-  resize: none;
-  border: none;
-  padding: 12px;
-  
-  border-radius:12px;
-  font-size: 14px;
-  background-color: #252422;
-  color: #CCC5B9;
+	background-color: var(--color-bg);
+	color: var(--color-text-subtle);
+
+	font-size: 14px;
+	border: none;
+	resize: none;
+	padding: 10px;
+	width: 100%;
+	height: 100%;
 }
 #editor:focus {
-  outline: none;
-  color: #FFFCF2;
+	color: var(--color-text-main);
+	outline: none;
 }
 
 #prompt-dialog {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 10;
-  transform: translate(-50%, -50%);
-  width: fit-content;
-  background-color: #403D39;
-  padding: 10px;
-  border: 2px solid #252422;
-  border-radius: 10px;
-  margin: 6px auto;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+	background-color: var(--color-bg-subtle);
+	color: var(--color-text-main);
+	border: var(--color-primary) solid 2px;
+
+	padding: 20px;
+
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
-input {
-  background-color: #403D39;
-  border: 2px solid #252422;
-  border-radius: 6px;
-  padding: 4px;
-}
-input:hover {
-  color: #CCC5B9;
-}
-input:focus {
-  color: #FFFCF2;
-  outline: none;
-}
+#note-name {
+	outline: none;
+	background-color: var(--color-bg);
+	color: var(--color-text-main);
+	border: none;
 
+	padding: 6px;
+	width: 100%;
+}

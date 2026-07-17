@@ -6,24 +6,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="note-edit">
-    <h1>Note Editor</h1>
-        <div id="top-bar">
-            <p id="note-name-lbl">untitled</p>
-            <button id="new-btn">New</button>
-            <button id="open-btn">Open</button>
-            <button id="save-btn">Save</button>
-            <button id="save-as-btn">Save As</button>
-            <button id="options-btn">Options</button>
+    <div id="app">
+        <div id="side-bar">
+            <h3>notes:</h3>
+            <div id="notes-list"></div>
         </div>
-        <textarea
-            placeholder="Type stuff!"
-            id="editor"
-        ></textarea>
-        <h3>notes:</h3>
-    <div id="notes-list">
-        <h3>Notes:</h3>
-    </div>
+        <div id="editor-area">
+            <div id="top-bar">
+                <h3 id="note-name-lbl">untitled</h3>
+                <button id="new-btn">New</button>
+                <button id="open-btn">Open</button>
+                <button id="save-btn">Save</button>
+                <button id="save-as-btn">Save As</button>
+                <button id="options-btn">Options</button>
+            </div>
+            <textarea
+                placeholder="Type stuff!"
+                id="editor"
+            >
+            </textarea>
+        </div>
     </div>
     
     <div id="prompt-dialog" hidden> 
@@ -40,7 +42,6 @@
 
 <!--
 TODO:
-new notes appear on top
 not saved indicator
 notes layout
 file/saves explorer
