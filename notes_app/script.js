@@ -27,6 +27,7 @@ updateLineNumbers();
 function newNote() {
 	editor.value = "";
 	currentNote = null;
+	noteNameLbl.textContent = "untitled";
 }
 
 function saveNote(title, data) {
@@ -135,4 +136,9 @@ openBtn.addEventListener("click", () => {
 			alert("note not found!");
 		}
 	});
+});
+
+newBtn.addEventListener("click", () => {
+	newNote();
+	updateNotesList
 });
