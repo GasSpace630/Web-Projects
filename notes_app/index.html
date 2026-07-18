@@ -15,11 +15,11 @@
 		<div id="editor-area">
 			<div id="top-bar">
 				<h3 id="note-name-lbl"></h3>
-				<button id="new-btn">New</button>
-				<button id="open-btn">Open</button>
-				<button id="save-btn">Save</button>
-				<button id="save-as-btn">Save As</button>
-				<button id="options-btn">Options</button>
+				<button id="new-btn" title="Create a new note">New</button>
+				<button id="open-btn" title="Open an existing note">Open</button>
+				<button id="save-btn" title="Save this note">Save</button>
+				<button id="save-as-btn" title="Save this note in a different name">Save As</button>
+				<button id="options-btn" title="Work in Progress !">Options</button>
 			</div>
 			<div id="editor-container">
 				<div id="line-numbers">sdk</div>
@@ -31,12 +31,11 @@
 			</div>
 			<div id="status-bar">
 				<p id="cursor-pos">0 : 0</p>
-				<p> | </p>
 			</div>
 		</div>
 	</div>
 	
-	<div id="prompt-dialog" hidden> 
+	<div id="prompt-dialog" hidden>
 		<input id="note-name" type="text" placeholder="Name your note">
 		<br><br>
 		<button id="cancel-btn">Cancel</button>

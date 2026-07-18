@@ -10,6 +10,9 @@ const lineNumbers = document.getElementById("line-numbers")
 const notesList = document.getElementById("notes-list");
 const noteNameLbl = document.getElementById("note-name-lbl");
 
+const statusBar = document.getElementById("status-bar");
+const cursorPosLbl = document.getElementById("cursor-pos");
+
 const promptDialog = document.getElementById("prompt-dialog");
 const noteNameInput = document.getElementById("note-name");
 const okBtn = document.getElementById("ok-btn");
@@ -121,6 +124,17 @@ function updateNotesList() {
 	updateLineNumbers();
 }
 
+function updateCursorPos() {
+	const pos = editor.selectionStart;
+	const textBefore = editor.value.substring(0, pos);
+	const lines = textBefore.split("\n");
+	const line = lines.length;
+	const column = lines[lines.length - 1].length + 1;
+
+	cursorPosLbl.textContent = `${line} : ${column}`;
+	// TODO: reset to 0,0 when opeing a new note
+}
+
 function showPrompt(action) {
 	promptAction = action;
 	noteNameInput.value = "";
@@ -137,6 +151,11 @@ noteNameInput.addEventListener("keydown", (event) => {
 });
 
 editor.addEventListener("input", updateLineNumbers);
+
+editor.addEventListener("keyup", updateCursorPos);
+editor.addEventListener("click", updateCursorPos);
+editor.addEventListener("input", updateCursorPos);
+editor.addEventListener("select", updateCursorPos);
 
 editor.addEventListener("scroll", () => {
 	lineNumbers.scrollTop = editor.scrollTop;
@@ -190,6 +209,8 @@ newBtn.addEventListener("click", () => {
 });
 
 clearDataBtn.addEventListener("click", () => {
-	localStorage.clear();
-	updateNotesList();
+	if (confirm("This REMOVES all the saved data PERMANENTLY!!!")) {
+		localStorage.clear();
+		updateNotesList();
+	}
 });

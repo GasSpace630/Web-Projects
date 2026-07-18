@@ -70,17 +70,20 @@ button:active {
 	width: 250px;
 	padding: 6px;
 }
-#side-bar .note-btn {
-	min-width: 0;
-	overflow: hidden;
-}
-#side-bar .delete-btn {
-	max-width: 10px;
-}
-
 .note-row {
 	display: flex;
 	flex-direction: row;
+}
+.note-btn {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.delete-btn {
+	max-width: 10px;
+}
+#clear-data-btn {
+	margin-top: auto;
 }
 
 #editor-area {
