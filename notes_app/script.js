@@ -3,6 +3,8 @@ const openBtn = document.getElementById("open-btn");
 const saveBtn = document.getElementById("save-btn");
 const saveAsBtn = document.getElementById("save-as-btn");
 const optionsBtn = document.getElementById("options-btn");
+const clearDataBtn = document.getElementById("clear-data-btn");
+
 const editor = document.getElementById("editor");
 const lineNumbers = document.getElementById("line-numbers")
 const notesList = document.getElementById("notes-list");
@@ -69,6 +71,16 @@ function deleteNote(title) {
 	updateNotesList();
 }
 
+function updateLineNumbers() {
+	const lineCount = editor.value.split("\n").length;
+	let numbers = "1";
+
+	for (let i = 2; i < lineCount+1; i++) {
+		numbers += "\n" + i;
+	}
+	lineNumbers.textContent = numbers;
+}
+
 function updateNotesList() {
 	const notes = JSON.parse(localStorage.getItem("notes")) || [];
 	notesList.innerHTML = "";
@@ -102,16 +114,7 @@ function updateNotesList() {
 		notesList.appendChild(deleteBtn);
 		notesList.appendChild(document.createElement("br"));
 	});
-}
-
-function updateLineNumbers() {
-	const lineCount = editor.value.split("\n").length;
-	let numbers = "1";
-
-	for (let i = 2; i < lineCount+1; i++) {
-		numbers += "\n" + i;
-	}
-	lineNumbers.textContent = numbers;
+	updateLineNumbers();
 }
 
 function showPrompt(action) {
@@ -181,5 +184,10 @@ openBtn.addEventListener("click", () => {
 
 newBtn.addEventListener("click", () => {
 	newNote();
+	updateNotesList();
+});
+
+clearDataBtn.addEventListener("click", () => {
+	localStorage.clear();
 	updateNotesList();
 });
