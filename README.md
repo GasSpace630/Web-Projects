@@ -4,6 +4,8 @@ Why not make a repo for every project? Well these are mere simple projects of co
 
 ## The projects i currently have:-
 * Simple Calculator
+> Do simple arithmetic operations :)
 <img src="imgs/web-calc.png" alt="calculator screenshot">
 
 * Notes App (name not found) WIP.
+<img src="imgs/web-note-app-1.png" alt="note app screenshot">
