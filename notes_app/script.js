@@ -58,13 +58,29 @@ function loadNote(title) {
 	return note || null;
 }
 
+function deleteNote(title) {
+	let notes = JSON.parse(localStorage.getItem("notes")) || [];
+	notes = notes.filter(note => note.title != title);
+
+	localStorage.setItem("notes", JSON.stringify(notes));
+	if (currentNote == title) {
+		newNote();
+	}
+	updateNotesList();
+}
+
 function updateNotesList() {
 	const notes = JSON.parse(localStorage.getItem("notes")) || [];
 	notesList.innerHTML = "";
+
 	notes.forEach((note) => {
 		const noteBtn = document.createElement("button");
+		const deleteBtn = document.createElement("button");
+
 		noteBtn.className = "note-btn";
 		noteBtn.textContent = note.title;
+		deleteBtn.className = "delete-btn";
+		deleteBtn.textContent = "x";
 
 		noteBtn.addEventListener("click", () => {
 			const loadedNote = loadNote(note.title);
@@ -75,7 +91,16 @@ function updateNotesList() {
 				noteNameLbl.textContent = loadedNote.title;
 			}
 		});
+
+		deleteBtn.addEventListener("click", () => {
+			if (confirm(`Delete "${note.title}"?`)) {
+				deleteNote(note.title);
+			}
+		});
+
 		notesList.appendChild(noteBtn);
+		notesList.appendChild(deleteBtn);
+		notesList.appendChild(document.createElement("br"));
 	});
 }
 
