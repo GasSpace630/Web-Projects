@@ -56,7 +56,8 @@ button:active {
 }
 
 #side-bar {
-	background-color: var(--color-bg);
+	background-color: var(--color-bg-subtle);
+	border: var(--color-bg) solid 2px;
 
 	width: 250px;
 	padding: 10px;

@@ -48,8 +48,13 @@ function saveNote(title, data) {
 function loadNote(title) {
 	let notes = JSON.parse(localStorage.getItem("notes")) || [];
 	const note = notes.find(note => note.title == title);
-	currentNoteTitle = note.title;
-	noteNameLbl.textContent = currentNoteTitle;
+
+	if (!note) {
+		alert("note NOT fount!")
+		return null;
+	}
+	currentNote = note.title;
+	noteNameLbl.textContent = currentNote;
 	return note || null;
 }
 
@@ -57,9 +62,19 @@ function updateNotesList() {
 	const notes = JSON.parse(localStorage.getItem("notes")) || [];
 	notesList.innerHTML = "";
 	notes.forEach((note) => {
-		const noteBtn = document.createElement("div");
+		const noteBtn = document.createElement("button");
 		noteBtn.className = "note-btn";
 		noteBtn.textContent = note.title;
+
+		noteBtn.addEventListener("click", () => {
+			const loadedNote = loadNote(note.title);
+
+			if (loadedNote) {
+				currentNote = loadedNote.title;
+				editor.value = loadedNote.data;
+				noteNameLbl.textContent = loadedNote.title;
+			}
+		});
 		notesList.appendChild(noteBtn);
 	});
 }
@@ -99,6 +114,7 @@ okBtn.addEventListener("click", () => {
 	const title = noteNameInput.value.trim();
 	if (title == "") {
 		alert("Enter a note name!");
+		return;
 	}
 	promptAction(title);
 	hidePrompt();
@@ -140,5 +156,5 @@ openBtn.addEventListener("click", () => {
 
 newBtn.addEventListener("click", () => {
 	newNote();
-	updateNotesList
+	updateNotesList();
 });
