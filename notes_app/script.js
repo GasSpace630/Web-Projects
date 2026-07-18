@@ -44,6 +44,8 @@ function saveNote(title, data) {
 		});
 	}
 	localStorage.setItem("notes", JSON.stringify(notes));
+	currentNote = title;
+	noteNameLbl.textContent = title
 	updateNotesList();
 }
 
@@ -86,9 +88,11 @@ function updateNotesList() {
 	notesList.innerHTML = "";
 
 	notes.forEach((note) => {
+		const noteRow = document.createElement("div")
 		const noteBtn = document.createElement("button");
 		const deleteBtn = document.createElement("button");
 
+		noteRow.className = "note-row";
 		noteBtn.className = "note-btn";
 		noteBtn.textContent = note.title;
 		deleteBtn.className = "delete-btn";
@@ -110,9 +114,9 @@ function updateNotesList() {
 			}
 		});
 
-		notesList.appendChild(noteBtn);
-		notesList.appendChild(deleteBtn);
-		notesList.appendChild(document.createElement("br"));
+		noteRow.appendChild(noteBtn);
+		noteRow.appendChild(deleteBtn);
+		notesList.appendChild(noteRow);
 	});
 	updateLineNumbers();
 }
@@ -156,7 +160,6 @@ saveBtn.addEventListener("click", () => {
 	if (currentNote == null) {
 		showPrompt((title) => {
 			saveNote(title, editor.value);
-			currentNote = title;
 		});
 	} else {
 		saveNote(currentNote, editor.value);
@@ -167,7 +170,6 @@ saveBtn.addEventListener("click", () => {
 saveAsBtn.addEventListener("click", () => {
 	showPrompt((title) => {
 		saveNote(title, editor.value);
-		currentNote = title;
 	});
 });
 

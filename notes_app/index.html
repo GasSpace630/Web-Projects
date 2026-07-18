@@ -14,7 +14,7 @@
 		</div>
 		<div id="editor-area">
 			<div id="top-bar">
-				<h3 id="note-name-lbl">untitled</h3>
+				<h3 id="note-name-lbl"></h3>
 				<button id="new-btn">New</button>
 				<button id="open-btn">Open</button>
 				<button id="save-btn">Save</button>
@@ -28,6 +28,10 @@
 					id="editor"
 				>
 				</textarea>
+			</div>
+			<div id="status-bar">
+				<p id="cursor-pos">0 : 0</p>
+				<p> | </p>
 			</div>
 		</div>
 	</div>
@@ -47,6 +51,8 @@
 <!--
 TODO:
 note not saved indicator (*)
+status bar
+custom pop-up to replace alert,confirm
 load the last edited/used note on startup
 note tabs
 add a image as bg with translucent textarea

@@ -17,21 +17,26 @@ body, html{
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 h1, h2, h3 {
-	padding: 0;
+	padding: 2px;
 	margin: 0;
 	color: var(--color-primary);
+
 }
 
 button {
 	background-color: var(--color-bg);
 	color: var(--color-text-subtle);
-	cursor: pointer;
 	border: none;
+	cursor: pointer;
 
 	padding: 8px 36px 8px 36px;
+	width: 100%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 button:hover {
 	background-color: var(--color-bg-subtle);
@@ -56,26 +61,49 @@ button:active {
 }
 
 #side-bar {
+	display: flex;
+	flex-direction: column;
 	background-color: var(--color-bg-subtle);
 	border: var(--color-bg) solid 2px;
 
+	max-width: 250px;
 	width: 250px;
-	padding: 10px;
+	padding: 6px;
+}
+#side-bar .note-btn {
+	min-width: 0;
+	overflow: hidden;
+}
+#side-bar .delete-btn {
+	max-width: 10px;
+}
+
+.note-row {
+	display: flex;
+	flex-direction: row;
 }
 
 #editor-area {
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	padding: 6px;
+	padding: 2px;
 	border: var(--color-bg) solid 2px;
 	min-width: 0;
 	min-height: 0;
 }
 
 #top-bar {
+	display: flex;
 	flex-shrink: 0;
 	padding-bottom: 6px;
+}
+
+#note-name-lbl {
+	min-width: 180px;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 #editor-container {
@@ -93,7 +121,7 @@ button:active {
 	white-space: pre;
 	user-select: none;
 
-	padding: 10px;
+	padding: 6px;
 }
 
 #editor {
@@ -107,11 +135,23 @@ button:active {
 	font-size: 14px;
 	border: none;
 	resize: none;
-	padding: 10px;
+	padding: 6px;
 }
 #editor:focus {
 	color: var(--color-text-main);
 	outline: none;
+}
+
+#status-bar {
+	display: flex;
+	flex-direction: row;
+	color: var(--color-text-subtle);
+	border: var(--color-bg) solid 2px;
+}
+#status-bar p {
+	font-size: 12px;
+	padding: 2px;
+	margin: 0px;
 }
 
 #prompt-dialog {
