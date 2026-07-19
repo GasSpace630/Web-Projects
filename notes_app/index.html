@@ -7,6 +7,7 @@
 </head>
 <body>
 	<div id="app">
+		<div id="main-side-container">
 		<div id="side-bar">
 			<h3>notes:</h3>
 			<div id="notes-list"></div>
@@ -29,9 +30,11 @@
 				>
 				</textarea>
 			</div>
-			<div id="status-bar">
-				<p id="cursor-pos">0 : 0</p>
-			</div>
+		</div>
+		</div>
+		<div id="status-bar">
+			<button id="side-bar-btn">=</button>
+			<p id="cursor-pos">0 : 0</p>
 		</div>
 	</div>
 	
@@ -50,6 +53,7 @@
 <!--
 TODO:
 note not saved indicator (*)
+hamburger sidebar
 status bar
 custom pop-up to replace alert,confirm
 load the last edited/used note on startup

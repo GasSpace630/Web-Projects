@@ -54,10 +54,15 @@ button:active {
 
 #app {
 	display: flex;
-	flex-direction: row;
-
-	width: 100%;
+	flex-direction: column;
 	height: 100vh;
+}
+
+#main-side-container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	flex: 1;
 }
 
 #side-bar {
@@ -69,7 +74,15 @@ button:active {
 	max-width: 250px;
 	width: 250px;
 	padding: 6px;
+
+	transform: translateX(0);
+	transition: transform 0.3s ease;
 }
+#side-bar.closed {
+	transform: translateX(-100%);
+	display: none;
+}
+
 .note-row {
 	display: flex;
 	flex-direction: row;
@@ -90,7 +103,6 @@ button:active {
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	padding: 2px;
 	border: var(--color-bg) solid 2px;
 	min-width: 0;
 	min-height: 0;
@@ -155,6 +167,12 @@ button:active {
 	font-size: 12px;
 	padding: 2px;
 	margin: 0px;
+}
+
+#side-bar-btn {
+	padding: 0;
+	border: none;
+	width: 2%;
 }
 
 #prompt-dialog {

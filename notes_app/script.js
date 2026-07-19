@@ -5,6 +5,9 @@ const saveAsBtn = document.getElementById("save-as-btn");
 const optionsBtn = document.getElementById("options-btn");
 const clearDataBtn = document.getElementById("clear-data-btn");
 
+const sideBar = document.getElementById("side-bar")
+const sideBarBtn = document.getElementById("side-bar-btn");
+
 const editor = document.getElementById("editor");
 const lineNumbers = document.getElementById("line-numbers")
 const notesList = document.getElementById("notes-list");
@@ -213,4 +216,8 @@ clearDataBtn.addEventListener("click", () => {
 		localStorage.clear();
 		updateNotesList();
 	}
+});
+
+sideBarBtn.addEventListener("click", () => {
+	sideBar.classList.toggle("closed");
 });
