@@ -10,9 +10,14 @@
 }
 
 body, html{
-	background-color: var(--color-bg-subtle);
 	color: var(--color-text-subtle);
 	font-family: 'JetBrains Mono', monospace;
+	margin: 0;
+    background-image: url("lotus-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
 	margin: 0;
 	padding: 0;
@@ -68,8 +73,10 @@ button:active {
 #side-bar {
 	display: flex;
 	flex-direction: column;
-	background-color: var(--color-bg-subtle);
 	border: var(--color-bg) solid 2px;
+	background: rgba(25, 25, 25, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
 	max-width: 250px;
 	width: 250px;
@@ -113,6 +120,9 @@ button:active {
 	flex-shrink: 0;
 	padding-bottom: 6px;
 }
+#top-bar button {
+	max-width: 12%;
+}
 
 #note-name-lbl {
 	min-width: 180px;
@@ -144,13 +154,18 @@ button:active {
 	min-width: 0;
 	min-height: 0;
 	overflow-y: auto;
-	background-color: var(--color-bg);
 	color: var(--color-text-subtle);
 
 	font-size: 14px;
-	border: none;
+	border: var(--color-bg) solid 2px;
 	resize: none;
 	padding: 6px;
+
+	background: rgba(30, 30, 30, 0.45);
+    color: var(--color-text-main);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 #editor:focus {
 	color: var(--color-text-main);
